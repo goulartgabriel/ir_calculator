@@ -2,8 +2,9 @@
 # vim:ts=4:sts=4:sw=4:et:wrap:ai:fileencoding=utf-8:
 
 import pdfplumber
-
+# https://github.com/jsvine/pdfplumber#extracting-tables
 pdf = pdfplumber.open('nota_corretagem.pdf')
+pdf = pdfplumber.open('nota_bb.pdf')
 page = pdf.pages[0]
 
 # (x0, top, x1, bottom)
@@ -17,19 +18,15 @@ bounding_box = (0, 220, page.width, 460) # main table
 page = page.crop(bounding_box)
 
 text = page.extract_text()
-print (text)
+# print (text)
+split_text = text.split("\n")
+# for line in split_text:
+#     # print (line)
+#     split_line = line.split(" ")
+#     print (len(split_line), split_line)
 
 
 # 35-40, 40-90, 90-105, 105-160, 160-185, 185-305, 305-335, 335-390, 390-445, 445-540, 545-560
-
-
-table_settings = {
-    # "explicit_vertical_lines": [90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390],
-    "vertical_strategy": "text",
-    "horizontal_strategy": "text",
-    # "intersection_x_tolerance": 10,
-    # "text_x_tolerance": 150,
-    }
 
 table_settings = {
     "explicit_vertical_lines": [35, 40, 90, 105, 160, 185, 305, 335, 390, 445, 540, 560],
@@ -39,10 +36,17 @@ table_settings = {
     # "text_x_tolerance": 150,
     }
 
+table_settings = {
+    "vertical_strategy": "text",
+    "horizontal_strategy": "text",
+    # "intersection_x_tolerance": 10,
+    "text_x_tolerance": 5,
+    }
+
 
 tables = page.extract_table(table_settings=table_settings)
 pdf.close()
-
+print (tables)
 for line in tables:
     print (line)
     print (len(line))
