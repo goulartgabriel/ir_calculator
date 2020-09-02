@@ -2,7 +2,10 @@
 # vim:ts=4:sts=4:sw=4:et:wrap:ai:fileencoding=utf-8:
 
 import pdfplumber
+# USEFUL LINKS
 # https://github.com/jsvine/pdfplumber#extracting-tables
+# https://github.com/guilhermecgs/ir
+# https://www.clubedopairico.com.br/temp/calculodeacoes.html
 pdf = pdfplumber.open('nota_corretagem.pdf')
 pdf = pdfplumber.open('nota_bb.pdf')
 page = pdf.pages[0]
