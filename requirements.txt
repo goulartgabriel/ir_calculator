@@ -1,1 +1,2 @@
 pdfplumber==0.5.23
+pandas==0.25.3
