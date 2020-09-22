@@ -6,12 +6,6 @@ import argparse
 
 import pandas as pd
 
-# USEFUL LINKS
-# https://github.com/jsvine/pdfplumber#extracting-tables
-# https://github.com/guilhermecgs/ir
-# https://www.clubedopairico.com.br/temp/calculodeacoes.html
-
-
 class orderInfo:
     def __init__(self, stock_name=None, date=None, order_cat=None, quantity=0, price=0):
         self.stock_name = stock_name
